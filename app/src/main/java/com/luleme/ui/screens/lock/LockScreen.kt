@@ -65,12 +65,10 @@ fun LockScreen(
     }
 
     // Auto unlock if disabled (handled by ViewModel logic + this effect)
-    LaunchedEffect(isLoading) {
-        if (!isLoading) {
-            // If verifyPin with empty string returns true, it means lock is disabled
-            if (viewModel.verifyPin("")) {
-                onUnlocked()
-            }
+    LaunchedEffect {
+        // If verifyPin with empty string returns true, it means lock is disabled
+        if (viewModel.verifyPin("")) {
+            onUnlocked()
         }
     }
 
